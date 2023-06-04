@@ -5,12 +5,12 @@ services:
       context: ./php
       dockerfile: Dockerfile
     ports:
-      - 8000:80
+     - 8000:80
     volumes:
-      - ./src:/var/www/html
+      - ./:/var/www/html
 
-  mysql:
-    image: mysql:8.0
+  db:
+    image: mysql
     ports:
       - 3306:3306
     environment:

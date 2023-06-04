@@ -21,7 +21,7 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background-image: linear-gradient(to bottom, var(--dark-blue-faded), var(--dark-blue-faded)), url("../assets/landing-page.jpg");
+    background-image: linear-gradient(to bottom, var(--dark-blue-faded), var(--dark-blue-faded)), url("../images/landing-page.jpg");
     background-size: 100% auto;
     background-position: center;
     background-repeat: no-repeat;
