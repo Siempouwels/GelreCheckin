@@ -1,0 +1,16 @@
+{
+    "name": "siem/gelre-checkin",
+    "description": "Dit is een web opdracht vanuit school over php html css & docker.",
+    "autoload": {
+        "psr-4": {
+            "App\\": "app/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Siempouwels",
+            "email": "spg.pouwels@student.han.nl"
+        }
+    ],
+    "require": {}
+}
