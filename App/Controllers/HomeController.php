@@ -27,6 +27,7 @@ class HomeController
 
     public function test()
     {
+        return "test";
         return View::render('home/home.php');
     }
 
