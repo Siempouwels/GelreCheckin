@@ -1,23 +1,32 @@
-version: '3'
+version: "3.8"
 services:
-  php:
+  database_server:
+    image: mcr.microsoft.com/mssql/server
+    env_file:
+      - variables.env
+    ports:
+      - target: 1433
+        published: 1434
+        protocol: tcp
+        mode: host
+    volumes:
+      - data-volume:/var/opt/mssql
+  web_server:
+    platform: "linux/amd64"
     build:
-      context: ./php
-      dockerfile: Dockerfile
+      dockerfile: Dockerfile-webserver
+    env_file:
+      - variables.env
+    depends_on:
+      - database_server
     ports:
-     - 8000:80
+      - target: 80
+        published: 8080
+        protocol: tcp
+        mode: host
     volumes:
-      - ./:/var/www/html
-      - ./apache-conf:/etc/apache2/sites-available
-
-  db:
-    image: mysql
-    ports:
-      - 3306:3306
-    environment:
-      MYSQL_DATABASE: ${DB_NAME}
-      MYSQL_USER: ${DB_USER}
-      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
-      MYSQL_PASSWORD: ${DB_PASSWORD}
-    volumes:
-      - ./mysql-data:/var/lib/mysql
+      - ./applicatie/:/applicatie/
+      - ./webserver-setup/:/setup/
+    entrypoint: [ "sh", "/setup/bootstrap.sh" ]
+volumes:
+  data-volume:
